@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Curriculum Vitae</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function renderExperienceSection() {
+      const experience = [
+        {
+          title: "Frontend developer",
+          company: "SICE & Between",
+          description: `Developed full-stack web applications with React, Node.js, and Golang, focusing on responsive UIs and scalable backend services. Worked with MySQL, PostgreSQL, and Redis to optimize data storage and real-time performance. Ensured reliability through unit and integration testing. Deployed services using Docker across Linux and Windows environments to support CI/CD and scalable infrastructure.`,
+        },
+        {
+          title: "Frontend developer",
+          company: "720casa",
+          description: `Built and maintained web applications using JavaScript and React.js, contributing to frontend and full-stack projects involving MySQL databases based on product roadmap and designs. Enhanced user experience by optimizing complex UIs. Managed frontend and backend dependencies to ensure compatibility, security,and performance. Created and maintained locales and translations to support multilingual interfaces.`,
+        },
+        {
+          title: "Language teacher",
+          company: "Mitoyo",
+          description: `Taught Chinese to Spanish-speaking students online and in person.Prepared interactive content and customized lessons to meet students' needs. Provide feedback on exercises and organized language exchange events to enhance learning and conversation skills.`,
+        },
+        // {
+        //   title: "Language Tutor Volunteer",
+        //   company: "Madrid",
+        //   description: `Supported a Spanish learner in Chinese learning through weekly 2-3 hour sessions.
+        //   Developed personalized lessons focused on vocabulary, grammar, and conversation.
+        //   Successfully passed the official exam of HSK2.`,
+        // }
+      ];
+      let html = "";
+      experience.forEach(item => {
+        html += `<p>
+        <strong>${item.title} at ${item.company}</strong><br>
+        ${item.description}
+      </p>`;
+      });
+      document.querySelector(".experience-section-bg").innerHTML = html;
+    }
+
+    function renderEducationSection() {
+      const education = [
+        { degree: "Management and Direction of Educational Centers", institution: "Universidad Europea" },
+        // { degree: "Web and Mobile Development BootCamp", institution: "Codenotch" },
+        // { degree: "Business English", institution: "Zhejiang International Studies University" },
+        // { degree: "Exchange Study", institution: "Deltion College" }
+      ];
+
+      let html = '';
+      education.forEach(item => {
+        html += `<p><strong>${item.degree}</strong> at ${item.institution}</p>`;
+      });
+      document.getElementById('education-section').innerHTML = html;
+    }
+
+    function renderSkillsSection() {
+      const skills = [
+        // Frontend
+        { name: "HTML", icon: "/icons/html.svg", category: "Frontend" },
+        { name: "CSS", icon: "/icons/css.svg", category: "Frontend" },
+        { name: "JavaScript", icon: "/icons/javascript.svg", category: "Frontend" },
+        { name: "TypeScript", icon: "/icons/typescript.svg", category: "Frontend" },
+        { name: "React", icon: "/icons/react.svg", category: "Frontend" },
+        { name: "Next", icon: "/icons/next.svg", category: "Frontend" },
+        { name: "MaterialUI", icon: "/icons/material.svg", category: "Frontend" },
+        { name: "Jest", icon: "/icons/jest.svg", category: "Frontend" },
+        // Backend
+        { name: "NodeJS", icon: "/icons/node.svg", category: "Backend" },
+        { name: "Express", icon: "/icons/express.svg", category: "Backend" },
+        { name: "Go", icon: "/icons/golang.svg", category: "Backend" },
+        { name: "PHP", icon: "/icons/php.svg", category: "Backend" },
+        { name: "Knex", icon: "/icons/knex.svg", category: "Backend" },
+        // Databases
+        { name: "MySQL", icon: "/icons/mysql.svg", category: "Databases" },
+        { name: "PostgreSQL", icon: "/icons/postgresql.svg", category: "Databases" },
+        { name: "MongoDB", icon: "/icons/mongodb.svg", category: "Databases" },
+        { name: "Redis", icon: "/icons/redis.svg", category: "Databases" },
+        // Others
+        { name: "Git", icon: "/icons/git.svg", category: "Others" },
+        { name: "Docker", icon: "/icons/docker.svg", category: "Others" },
+        { name: "Linux", icon: "/icons/linux.svg", category: "Others" },
+        { name: "Windows", icon: "/icons/windows.svg", category: "Others" },
+        { name: "Postman", icon: "/icons/postman.svg", category: "Others" }
+      ];
+      // Remove categories, render all skills in a single grid
+      let html = '<div class="skills-grid">';
+      skills.forEach(skill => {
+        html += `
+          <div class="skill-item">
+            <img src="${skill.icon}" alt="${skill.name}" class="skill-icon">
+            <span>${skill.name}</span>
+          </div>
+        `;
+      });
+      html += '</div>';
+      document.getElementById('skills-section').innerHTML = html;
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+      renderExperienceSection();
+      renderEducationSection();
+      renderSkillsSection();
+    });
+  </script>
+</head>
+
+<body>
+  <div class="cv-container">
+    <header>
+      <h2>GUIHUA YIN</h2>
+      <p>FULL-STACK DEVELOPER <br> yinguihua2014@gmail.com</p>
+    </header>
+    <section>
+      <h3>Profile</h3>
+      <p>A React frontend developer with over 3 years' experience based in
+        Madrid, Spain.
+        Skilled in building modern,
+        responsive web applications. Passionate about clean code, TDD, and continuous growth. Comfortable working in
+        cross-functional teams and international
+        environments.</p>
+    </section>
+    <section>
+      <h3>Education</h3>
+      <section>
+        <div class="education-section-bg">
+          <div id="education-section"></div>
+        </div>
+      </section>
+    </section>
+    <section>
+      <h3>Experience</h3>
+      <div class="experience-section-bg"></div>
+    </section>
+    <section>
+      <h3>Skills</h3>
+      <section class="skills-section-bg">
+        <div id="skills-section"></div>
+      </section>
+    </section>
+  </div>
+</body>
+
+</html>
