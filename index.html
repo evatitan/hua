@@ -3,143 +3,1573 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Curriculum Vitae</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Guihua Yin - CV</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.3;
+      color: #2d3748;
+      background: white;
+      font-size: 11px;
+      min-height: 100vh;
+      padding: 10px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 20px;
+      min-height: calc(100vh - 20px);
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+      animation: gradientShift 3s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+      }
+
+      100% {
+        background: linear-gradient(90deg, #f5576c, #f093fb, #764ba2, #667eea);
+      }
+    }
+
+    .sidebar {
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      padding: 40px 20px 25px 20px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sidebar::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+      animation: rotateBackground 8s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes rotateBackground {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Removed sidebar rotating background animation for PDF compatibility */
+
+    .main-content {
+      padding: 40px 25px 25px 25px;
+      background: white;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #ffffff;
+      margin-bottom: 6px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .header .subtitle {
+      font-size: 12px;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+      font-weight: 400;
+      line-height: 1.3;
+      opacity: 0.9;
+    }
+
+    .sidebar-section {
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sidebar-section h3 {
+      font-size: 11px;
+      color: #f7fafc;
+      margin-bottom: 10px;
+      font-weight: 600;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-item {
+      font-size: 10px;
+      margin-bottom: 8px;
+      word-break: break-all;
+      opacity: 0.9;
+    }
+
+    .contact-item strong {
+      color: #cbd5e0;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-item a {
+      color: #90cdf4;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .contact-item a:hover {
+      color: #ffffff;
+      border-bottom-color: #90cdf4;
+      text-shadow: 0 0 8px rgba(144, 205, 244, 0.5);
+    }
+
+    .profile-text {
+      font-size: 10px;
+      line-height: 1.5;
+      text-align: justify;
+      color: #e2e8f0;
+      opacity: 0.9;
+    }
+
+    .skill-item {
+      font-size: 10px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      opacity: 0.9;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .skill-item strong {
+      color: #cbd5e0;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .main-section {
+      margin-bottom: 20px;
+    }
+
+    .main-section h2 {
+      font-size: 20px;
+      color: #2d3748;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 6px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .main-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    .job {
+      margin-bottom: 15px;
+      page-break-inside: avoid;
+      background: #f7fafc;
+      border-radius: 8px;
+      padding: 15px;
+      border-left: 4px solid #667eea;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .job::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+      transition: left 0.5s ease;
+      z-index: 0;
+    }
+
+    .job:hover::before {
+      left: 100%;
+    }
+
+    .job:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+    }
+
+    /* Removed job hover animations for PDF compatibility */
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .job-header-left {
+      flex: 1;
+    }
+
+    .job-title {
+      font-weight: 600;
+      color: #667eea;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .job-period {
+      font-size: 12px;
+      color: #718096;
+      font-style: italic;
+      text-align: right;
+      white-space: nowrap;
+      background: #e2e8f0;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .company {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #2d3748;
+    }
+
+    .job-description {
+      font-size: 11px;
+      line-height: 1.5;
+      text-align: left;
+      color: #4a5568;
+      margin-bottom: 8px;
+    }
+
+    .job-subsection {
+      margin-bottom: 10px;
+    }
+
+    .job-subtitle {
+      font-size: 10px;
+      color: #2d3748;
+      font-weight: 600;
+      margin-bottom: 0px;
+      display: inline;
+      margin-right: 6px;
+    }
+
+    .job-text {
+      font-size: 10px;
+      line-height: 1.4;
+      color: #4a5568;
+      margin: 0;
+      text-align: justify;
+      display: inline;
+    }
+
+    .technologies {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 6px 10px;
+      margin-top: 6px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 500;
+      box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);
+    }
+
+    .technologies strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .education-item {
+      margin-bottom: 12px;
+      background: #f7fafc;
+      border-radius: 8px;
+      padding: 12px;
+      border-left: 4px solid #764ba2;
+      transition: all 0.3s ease;
+    }
+
+    .education-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(118, 75, 162, 0.1);
+    }
+
+    .education-header {
+      margin-bottom: 4px;
+    }
+
+    .education-item .degree {
+      font-weight: 600;
+      color: #764ba2;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .education-item .institution {
+      font-size: 11px;
+      color: #718096;
+      font-weight: 500;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 4px;
+      align-items: center;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 3px 7px;
+      border-radius: 12px;
+      font-size: 8px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      backdrop-filter: blur(5px);
+    }
+
+    .skill-tag:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+    }
+
+    .language-item {
+      margin-bottom: 18px;
+    }
+
+    .language-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .language-header strong {
+      color: #cbd5e0;
+      font-size: 11px;
+    }
+
+    .language-level {
+      font-size: 10px;
+      color: #a0aec0;
+      font-style: italic;
+    }
+
+    .language-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .language-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 4px;
+      transition: width 0.8s ease;
+    }
+
+    .download-btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .download-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      min-width: 100px;
+      transition: all 0.3s ease;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Removed button hover animations for PDF compatibility */
+
+    .pdf-btn {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+    }
+
+    .pdf-btn:hover {
+      box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+    }
+
+    /* Removed PDF button hover animation for PDF compatibility */
+
+    .profile-photo {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 15px;
+      cursor: pointer;
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+      z-index: 1;
+      animation: photoGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes photoGlow {
+      0% {
+        background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+      }
+
+      100% {
+        background: linear-gradient(135deg, #f5576c, #f093fb, #764ba2, #667eea);
+      }
+    }
+
+    .profile-photo:hover .photo-overlay {
+      animation-duration: 0.5s;
+    }
+
+    .photo-border {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    }
+
+    .top-controls {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+
+    .clickable-lang {
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 2px;
+    }
+
+    .clickable-lang.active {
+      background: rgba(102, 126, 234, 0.15);
+      border-left: 3px solid #667eea;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+    }
+
+    .clickable-lang.active .language-progress {
+      background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        gap: 0;
+        border-radius: 10px;
+      }
+
+      .sidebar {
+        padding: 20px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .profile-photo {
+        width: 80px;
+        height: 80px;
+      }
+
+      .top-controls {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .download-btn-container {
+        order: 2;
+        width: 100%;
+        align-items: center;
+      }
+
+      .download-btn {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+      }
+
+      .job-header:not(.print-mode) {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 8mm;
+        /* 隐藏页眉页脚 */
+        margin-top: 0mm;
+        margin-bottom: 0mm;
+      }
+
+      /* 隐藏浏览器默认的页眉页脚信息 */
+      @page :first {
+        margin-top: 8mm;
+      }
+
+      @page :left {
+        margin-left: 8mm;
+        margin-right: 8mm;
+      }
+
+      @page :right {
+        margin-left: 8mm;
+        margin-right: 8mm;
+      }
+
+      /* Hide all animations and dynamic elements in print */
+      * {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+
+      /* 尝试隐藏浏览器默认页眉页脚 */
+      html {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .container::before {
+        display: none !important;
+      }
+
+      .sidebar::before {
+        display: none !important;
+      }
+
+      .job::before {
+        display: none !important;
+      }
+
+      .photo-overlay {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
+        animation: none !important;
+      }
+
+      body {
+        font-size: 11px !important;
+        background: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        min-height: auto !important;
+        line-height: 1.4 !important;
+      }
+
+      .container {
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        min-height: auto !important;
+        grid-template-columns: 270px 1fr !important;
+        gap: 15px !important;
+        height: 100vh !important;
+        page-break-inside: avoid;
+      }
+
+      .container::before {
+        display: none !important;
+      }
+
+      .sidebar {
+        padding: 15px 12px !important;
+        font-size: 10px !important;
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%) !important;
+        color: white !important;
+        height: 100% !important;
+      }
+
+      .header {
+        padding: 8px 0 !important;
+        margin-bottom: 10px !important;
+      }
+
+      .profile-photo {
+        width: 60px !important;
+        height: 60px !important;
+        margin-bottom: 8px !important;
+      }
+
+      .header h1 {
+        font-size: 18px !important;
+        margin: 5px 0 !important;
+        color: #ffffff !important;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      .header .subtitle {
+        font-size: 11px !important;
+        margin-bottom: 10px !important;
+        color: #e2e8f0 !important;
+      }
+
+      .sidebar-section {
+        margin-bottom: 8px !important;
+        padding: 3px 0 !important;
+      }
+
+      .sidebar-section h3 {
+        font-size: 10px !important;
+        margin-bottom: 5px !important;
+        color: #f7fafc !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+        padding-bottom: 2px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+      }
+
+      .profile-text {
+        font-size: 8px !important;
+        line-height: 1.3 !important;
+        color: #e2e8f0 !important;
+        text-align: justify !important;
+        opacity: 0.9 !important;
+      }
+
+      .contact-item {
+        font-size: 8px !important;
+        margin-bottom: 3px !important;
+        color: #e2e8f0 !important;
+        line-height: 1.2 !important;
+        opacity: 0.9 !important;
+      }
+
+      .contact-item a {
+        color: #90cdf4 !important;
+        text-decoration: none !important;
+      }
+
+      .skill-item {
+        margin-bottom: 4px !important;
+        color: #e2e8f0 !important;
+        opacity: 0.9 !important;
+        padding: 3px 0 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      }
+
+      .skill-item:last-child {
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+      }
+
+      .skill-item strong {
+        font-size: 8px !important;
+        color: #cbd5e0 !important;
+        display: block !important;
+        margin-bottom: 3px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+        font-weight: 600 !important;
+      }
+
+      .skill-tags {
+        gap: 3px !important;
+        margin-top: 3px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+      }
+
+      .skill-tag {
+        font-size: 7px !important;
+        padding: 2px 5px !important;
+        background: rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.35) !important;
+        border-radius: 8px !important;
+        white-space: nowrap !important;
+        font-weight: 500 !important;
+      }
+
+      .language-item {
+        margin-bottom: 8px !important;
+      }
+
+      .language-header {
+        font-size: 9px !important;
+        margin-bottom: 4px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+      }
+
+      .language-header strong {
+        color: #cbd5e0 !important;
+      }
+
+      .language-level {
+        color: #a0aec0 !important;
+        font-size: 8px !important;
+      }
+
+      .language-bar {
+        height: 6px !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+        border-radius: 3px !important;
+      }
+
+      .language-progress {
+        background: linear-gradient(90deg, #667eea, #764ba2) !important;
+        height: 100% !important;
+        border-radius: 3px !important;
+      }
+
+      .main-content {
+        padding: 12px !important;
+        font-size: 10px !important;
+        height: 100% !important;
+        overflow: hidden !important;
+      }
+
+      .top-controls {
+        display: none !important;
+      }
+
+      .main-section {
+        margin-bottom: 15px !important;
+      }
+
+      .main-section:last-child {
+        margin-bottom: 0 !important;
+      }
+
+      .main-section h2 {
+        font-size: 14px !important;
+        margin-bottom: 10px !important;
+        padding-bottom: 5px !important;
+        border-bottom: 3px solid #667eea !important;
+        color: #2d3748 !important;
+        font-weight: 600 !important;
+        position: relative !important;
+      }
+
+      .main-section h2::after {
+        content: '' !important;
+        position: absolute !important;
+        bottom: -3px !important;
+        left: 0 !important;
+        width: 50px !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, #667eea, #764ba2) !important;
+        border-radius: 2px !important;
+      }
+
+      .job {
+        margin-bottom: 12px !important;
+        padding: 10px !important;
+        background: #f7fafc !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-left: 4px solid #667eea !important;
+        border-radius: 8px !important;
+        page-break-inside: avoid;
+      }
+
+      .job::before {
+        display: none !important;
+      }
+
+      .job-header {
+        margin-bottom: 5px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        flex-direction: row !important;
+      }
+
+      .job-header-left {
+        flex: 1 !important;
+        display: block !important;
+      }
+
+      .company {
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        color: #2d3748 !important;
+        margin-bottom: 2px !important;
+      }
+
+      .job-title {
+        font-size: 10px !important;
+        color: #667eea !important;
+        margin-bottom: 0 !important;
+        font-weight: 600 !important;
+      }
+
+      .job-period {
+        font-size: 9px !important;
+        color: #718096 !important;
+        background: #e2e8f0 !important;
+        padding: 3px 6px !important;
+        border-radius: 4px !important;
+        white-space: nowrap !important;
+        align-self: flex-start !important;
+        font-weight: 500 !important;
+        margin-left: 10px !important;
+        flex-shrink: 0 !important;
+      }
+
+      .job-description {
+        font-size: 9px !important;
+        line-height: 1.5 !important;
+        color: #4a5568 !important;
+        text-align: justify !important;
+      }
+
+      .job-subsection {
+        margin-bottom: 6px !important;
+      }
+
+      .job-subtitle {
+        font-size: 8px !important;
+        color: #2d3748 !important;
+        font-weight: 600 !important;
+        margin-bottom: 0px !important;
+        display: inline !important;
+        margin-right: 4px !important;
+      }
+
+      .job-text {
+        font-size: 8px !important;
+        line-height: 1.4 !important;
+        color: #4a5568 !important;
+        margin: 0 !important;
+        text-align: justify !important;
+        display: inline !important;
+      }
+
+      .technologies {
+        margin-top: 7px !important;
+        padding: 5px 7px !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border-radius: 6px !important;
+        font-size: 8px !important;
+        color: white !important;
+        line-height: 1.4 !important;
+        box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2) !important;
+      }
+
+      .technologies strong {
+        color: #ffffff !important;
+        font-weight: 600 !important;
+      }
+
+      .education-item {
+        margin-bottom: 10px !important;
+        padding: 8px !important;
+        background: #f7fafc !important;
+        border: none !important;
+        border-left: 4px solid #764ba2 !important;
+        border-radius: 8px !important;
+        page-break-inside: avoid;
+      }
+
+      .education-header {
+        margin-bottom: 4px !important;
+      }
+
+      .degree {
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        color: #764ba2 !important;
+        line-height: 1.4 !important;
+      }
+
+      .institution {
+        font-size: 9px !important;
+        color: #718096 !important;
+        line-height: 1.3 !important;
+        font-weight: 500 !important;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
   <script>
+    const translations = {
+      en: {
+        name: "GUIHUA YIN",
+        title: "Full-Stack Developer",
+        contact: "📧 Contact",
+        profile: "🙋 Profile",
+        profileText: "A passionate Full-Stack Developer with 3+ years of experience creating modern, responsive web applications. Specialized in React ecosystem and backend services. Love clean code, TDD, and continuous learning. Thrives in collaborative, international environments.",
+        skills: "🛠️ Technical Skills",
+        languages: "🌍 Languages",
+        experience: "👩‍💻 Professional Experience",
+        education: "🎓 Education",
+        printPdf: "📋 Print/PDF",
+        frontend: "Frontend Development",
+        backend: "Backend Development",
+        databases: "Database Systems",
+        infrastructure: "Cloud & DevOps",
+        testing: "Testing & Quality",
+        devops: "Development Tools",
+        chinese: "🇨🇳 Chinese",
+        english: "🇺🇸 English",
+        spanish: "🇪🇸 Spanish",
+        native: "Native",
+        professional: "Professional",
+        conversational: "Professional",
+        location: "Location",
+        experienceData: [
+          {
+            title: "Frontend Developer",
+            company: "SICE & Between",
+            period: "2022 - 2024",
+            description: [
+              {
+                subtitle: "Full-Stack Development & Architecture:",
+                content: "Developed comprehensive full-stack web applications using React, Node.js, and Python, with a focus on creating responsive user interfaces and building scalable backend services that could handle high traffic loads."
+              },
+              {
+                subtitle: "Database Optimization & Performance:",
+                content: "Worked extensively with MySQL, PostgreSQL, and Redis to optimize data storage solutions and enhance real-time performance, implementing efficient queries and caching strategies."
+              },
+              {
+                subtitle: "Quality Assurance & DevOps:",
+                content: "Ensured system reliability through comprehensive unit and integration testing. Deployed services using Docker across Linux and Windows environments to support CI/CD pipelines and scalable infrastructure."
+              }
+            ],
+            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Linux, Windows, CI/CD"
+          },
+          {
+            title: "Frontend Developer",
+            company: "720casa",
+            period: "2021 - 2022",
+            description: [
+              {
+                subtitle: "Frontend Development & UX Enhancement:",
+                content: "Built and maintained robust web applications using JavaScript and React.js, contributing to both frontend and full-stack projects involving MySQL databases based on product roadmap requirements and design specifications."
+              },
+              {
+                subtitle: "Performance Optimization:",
+                content: "Enhanced user experience by optimizing complex user interfaces, improving load times, and implementing responsive design patterns that worked seamlessly across different devices and browsers."
+              },
+              {
+                subtitle: "Dependency Management & Internationalization:",
+                content: "Managed frontend and backend dependencies to ensure compatibility, security, and optimal performance. Created and maintained localization files and translations to support multilingual interfaces."
+              }
+            ],
+            technologies: "JavaScript, Node.js, React.js, MySQL, knex.js, Docker, Linux"
+          },
+          {
+            title: "Language Teacher",
+            company: "Mitoyo",
+            period: "2020 - 2021",
+            description: [
+              {
+                subtitle: "Online & In-Person Teaching:",
+                content: "Taught Chinese to Spanish-speaking students through both online platforms and face-to-face sessions, adapting teaching methods to suit different learning styles and student needs."
+              },
+              {
+                subtitle: "Content Creation & Curriculum Design:",
+                content: "Prepared interactive educational content and customized lesson plans to meet individual student requirements, ensuring engaging and effective learning experiences."
+              },
+              {
+                subtitle: "Community Building & Language Exchange:",
+                content: "Provided detailed feedback on student exercises and organized language exchange events to enhance learning outcomes and improve conversation skills through practical application."
+              }
+            ],
+            technologies: "Online Teaching, Content Creation, Language Exchange"
+          }
+        ],
+        educationData: [
+          {
+            degree: "Management and Direction of Educational Centers",
+            institution: "Universidad Europea"
+          },
+          {
+            degree: "Business English",
+            institution: "Zhejiang International Studies University"
+          }
+        ]
+      },
+      zh: {
+        name: "尹桂花",
+        title: "全栈开发工程师",
+        contact: "📧 联系方式",
+        profile: "🙋 个人简介",
+        profileText: "拥有3年以上经验的全栈开发工程师，专注于现代响应式Web应用开发。专业领域包括React生态系统和后端服务。热爱代码整洁、测试驱动开发和持续学习。在国际化协作环境中表现出色。",
+        skills: "🛠️ 技术技能",
+        languages: "🌍 语言能力",
+        experience: "👩‍💻 工作经历",
+        education: "🎓 教育背景",
+        printPdf: "📋 打印/PDF",
+        frontend: "前端开发",
+        backend: "后端开发",
+        databases: "数据库系统",
+        infrastructure: "云服务与运维",
+        testing: "测试与质量",
+        devops: "开发工具",
+        chinese: "🇨🇳 中文",
+        english: "🇺🇸 英语",
+        spanish: "🇪🇸 西班牙语",
+        native: "母语",
+        professional: "专业级",
+        conversational: "专业级",
+        location: "地址",
+        experienceData: [
+          {
+            title: "前端开发工程师",
+            company: "SICE & Between",
+            period: "2022 - 2024",
+            description: [
+              {
+                subtitle: "全栈开发与架构设计：",
+                content: "使用React、Node.js和Python开发综合性全栈Web应用，专注于创建响应式用户界面和构建可处理高流量负载的可扩展后端服务。"
+              },
+              {
+                subtitle: "数据库优化与性能提升：",
+                content: "深度使用MySQL、PostgreSQL和Redis优化数据存储解决方案并提升实时性能，实施高效查询和缓存策略。"
+              },
+              {
+                subtitle: "质量保证与DevOps：",
+                content: "通过全面的单元测试和集成测试确保系统可靠性。在Linux和Windows环境中使用Docker部署服务，支持CI/CD流水线和可扩展基础设施。"
+              }
+            ],
+            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Linux, Windows, CI/CD"
+          },
+          {
+            title: "前端开发工程师",
+            company: "720casa",
+            period: "2021 - 2022",
+            description: [
+              {
+                subtitle: "前端开发与用户体验优化：",
+                content: "使用JavaScript和React.js构建和维护稳健的Web应用，参与基于产品路线图要求和设计规范的涉及MySQL数据库的前端和全栈项目开发。"
+              },
+              {
+                subtitle: "性能优化：",
+                content: "通过优化复杂用户界面、改善加载时间和实施在不同设备和浏览器上无缝运行的响应式设计模式来提升用户体验。"
+              },
+              {
+                subtitle: "依赖管理与国际化：",
+                content: "管理前端和后端依赖关系以确保兼容性、安全性和最佳性能。创建和维护本地化文件和翻译以支持多语言界面。"
+              }
+            ],
+            technologies: "JavaScript, Node.js, React.js, MySQL, knex.js, Docker, Linux"
+          },
+          {
+            title: "语言教师",
+            company: "Mitoyo",
+            period: "2020 - 2021",
+            description: [
+              {
+                subtitle: "线上线下教学：",
+                content: "通过在线平台和面对面课程为西班牙语学生教授中文，调整教学方法以适应不同的学习风格和学生需求。"
+              },
+              {
+                subtitle: "内容创作与课程设计：",
+                content: "准备互动教育内容并定制课程计划以满足个别学生需求，确保引人入胜且有效的学习体验。"
+              },
+              {
+                subtitle: "社区建设与语言交流：",
+                content: "为学生练习提供详细反馈并组织语言交流活动，通过实际应用提升学习成果和改善会话技能。"
+              }
+            ],
+            technologies: "在线教学, 内容创作, 语言交流, 课程设计"
+          }
+        ],
+        educationData: [
+          {
+            degree: "教育中心管理与指导硕士",
+            institution: "欧洲大学"
+          },
+          {
+            degree: "商务英语学士",
+            institution: "浙江国际研究大学"
+          }
+        ]
+      },
+      es: {
+        name: "GUIHUA YIN",
+        title: "Desarrollador Full-Stack",
+        contact: "📧 Contacto",
+        profile: "🙋 Perfil",
+        profileText: "Desarrolladora Full-Stack apasionado con más de 3 años de experiencia creando aplicaciones web modernas y responsivas. Especializado en el ecosistema React y servicios backend. Amo el código limpio, TDD y el aprendizaje continuo. Prospero en entornos colaborativos e internacionales.",
+        skills: "🛠️ Habilidades Técnicas",
+        languages: "🌍 Idiomas",
+        experience: "👩‍💻 Experiencia Profesional",
+        education: "🎓 Educación",
+        printPdf: "📋 Imprimir/PDF",
+        frontend: "Desarrollo Frontend",
+        backend: "Desarrollo Backend",
+        databases: "Sistemas de Base de Datos",
+        infrastructure: "Cloud y DevOps",
+        testing: "Testing y Calidad",
+        devops: "Herramientas de Desarrollo",
+        chinese: "🇨🇳 Chino",
+        english: "🇺🇸 Inglés",
+        spanish: "🇪🇸 Español",
+        native: "Nativo",
+        professional: "Profesional",
+        conversational: "Profesional",
+        location: "Ubicación",
+        experienceData: [
+          {
+            title: "Desarrollador Frontend",
+            company: "SICE & Between",
+            period: "2022 - 2024",
+            description: [
+              {
+                subtitle: "Desarrollo Full-Stack y Arquitectura:",
+                content: "Desarrollé aplicaciones web full-stack integrales usando React, Node.js y Python, con enfoque en crear interfaces de usuario responsivas y construir servicios backend escalables que pudieran manejar cargas de tráfico altas."
+              },
+              {
+                subtitle: "Optimización de Base de Datos y Rendimiento:",
+                content: "Trabajé extensivamente con MySQL, PostgreSQL y Redis para optimizar soluciones de almacenamiento de datos y mejorar el rendimiento en tiempo real, implementando consultas eficientes y estrategias de caché."
+              },
+              {
+                subtitle: "Aseguramiento de Calidad y DevOps:",
+                content: "Aseguré la confiabilidad del sistema a través de pruebas unitarias e integración integrales. Desplegué servicios usando Docker en entornos Linux y Windows para soportar pipelines CI/CD e infraestructura escalable."
+              }
+            ],
+            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Linux, Windows, CI/CD"
+          },
+          {
+            title: "Desarrollador Frontend",
+            company: "720casa",
+            period: "2021 - 2022",
+            description: [
+              {
+                subtitle: "Desarrollo Frontend y Mejora UX:",
+                content: "Construí y mantuve aplicaciones web robustas usando JavaScript y React.js, contribuyendo a proyectos frontend y full-stack que involucran bases de datos MySQL basados en requisitos de hoja de ruta del producto y especificaciones de diseño."
+              },
+              {
+                subtitle: "Optimización de Rendimiento:",
+                content: "Mejoré la experiencia del usuario optimizando interfaces de usuario complejas, mejorando tiempos de carga e implementando patrones de diseño responsivo que funcionaban perfectamente en diferentes dispositivos y navegadores."
+              },
+              {
+                subtitle: "Gestión de Dependencias e Internacionalización:",
+                content: "Gestioné dependencias frontend y backend para asegurar compatibilidad, seguridad y rendimiento óptimo. Creé y mantuve archivos de localización y traducciones para soportar interfaces multiidioma."
+              }
+            ],
+            technologies: "JavaScript, Node.js, React.js, MySQL, knex.js, Docker, Linux"
+          },
+          {
+            title: "Profesor de Idiomas",
+            company: "Mitoyo",
+            period: "2020 - 2021",
+            description: [
+              {
+                subtitle: "Enseñanza Online y Presencial:",
+                content: "Enseñé chino a estudiantes hispanohablantes a través de plataformas online y sesiones presenciales, adaptando métodos de enseñanza para adaptarse a diferentes estilos de aprendizaje y necesidades estudiantiles."
+              },
+              {
+                subtitle: "Creación de Contenido y Diseño Curricular:",
+                content: "Preparé contenido educativo interactivo y planes de lección personalizados para satisfacer requisitos estudiantiles individuales, asegurando experiencias de aprendizaje atractivas y efectivas."
+              },
+              {
+                subtitle: "Construcción de Comunidad e Intercambio de Idiomas:",
+                content: "Proporcioné retroalimentación detallada sobre ejercicios estudiantiles y organicé eventos de intercambio de idiomas para mejorar resultados de aprendizaje y habilidades de conversación a través de aplicación práctica."
+              }
+            ],
+            technologies: "Enseñanza Online, Creación de Contenido, Intercambio de Idiomas"
+          }
+        ],
+        educationData: [
+          {
+            degree: "Máster en Gestión y Dirección de Centros Educativos",
+            institution: "Universidad Europea"
+          },
+          {
+            degree: "Inglés de Negocios",
+            institution: "Universidad de Estudios Internacionales de Zhejiang"
+          }
+        ]
+      }
+    };
+
+    let currentLang = 'en';
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      updateContent();
+    }
+
+    function updateContent() {
+      const t = translations[currentLang];
+
+      document.querySelector('.header h1').textContent = t.name;
+      document.querySelector('.header .subtitle').textContent = t.title;
+
+      document.querySelectorAll('.sidebar-section h3')[0].textContent = t.profile;
+      document.querySelectorAll('.sidebar-section h3')[1].textContent = t.contact;
+      document.querySelectorAll('.sidebar-section h3')[2].textContent = t.skills;
+      document.querySelectorAll('.sidebar-section h3')[3].textContent = t.languages;
+
+      document.querySelector('.profile-text').textContent = t.profileText;
+
+      const skillItems = document.querySelectorAll('.skill-item strong');
+      skillItems[0].textContent = t.frontend + ':';
+      skillItems[1].textContent = t.backend + ':';
+      skillItems[2].textContent = t.databases + ':';
+      skillItems[3].textContent = t.infrastructure + ':';
+      skillItems[4].textContent = t.testing + ':';
+      skillItems[5].textContent = t.devops + ':';
+
+
+      const languageHeaders = document.querySelectorAll('.language-header strong');
+      languageHeaders[0].textContent = t.chinese;
+      languageHeaders[1].textContent = t.english;
+      languageHeaders[2].textContent = t.spanish;
+
+      const languageLevels = document.querySelectorAll('.language-level');
+      languageLevels[0].textContent = t.native;
+      languageLevels[1].textContent = t.professional;
+      languageLevels[2].textContent = t.conversational;
+
+      document.querySelectorAll('.main-section h2')[0].textContent = t.experience;
+      document.querySelectorAll('.main-section h2')[1].textContent = t.education;
+
+      document.querySelector('.download-btn').innerHTML = t.printPdf;
+
+      updateLanguageHighlight();
+
+      renderExperienceSection();
+      renderEducationSection();
+    }
+
+    function updateLanguageHighlight() {
+
+      document.querySelectorAll('.clickable-lang').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      const currentLangItem = document.querySelector(`[data-lang="${currentLang}"]`);
+      if (currentLangItem) {
+        currentLangItem.classList.add('active');
+      }
+    }
+
     function renderExperienceSection() {
-      const experience = [
-        {
-          title: "Frontend developer",
-          company: "SICE & Between",
-          description: `Developed full-stack web applications with React, Node.js, and Golang, focusing on responsive UIs and scalable backend services. Worked with MySQL, PostgreSQL, and Redis to optimize data storage and real-time performance. Ensured reliability through unit and integration testing. Deployed services using Docker across Linux and Windows environments to support CI/CD and scalable infrastructure.`,
-        },
-        {
-          title: "Frontend developer",
-          company: "720casa",
-          description: `Built and maintained web applications using JavaScript and React.js, contributing to frontend and full-stack projects involving MySQL databases based on product roadmap and designs. Enhanced user experience by optimizing complex UIs. Managed frontend and backend dependencies to ensure compatibility, security,and performance. Created and maintained locales and translations to support multilingual interfaces.`,
-        },
-        {
-          title: "Language teacher",
-          company: "Mitoyo",
-          description: `Taught Chinese to Spanish-speaking students online and in person.Prepared interactive content and customized lessons to meet students' needs. Provide feedback on exercises and organized language exchange events to enhance learning and conversation skills.`,
-        },
-        // {
-        //   title: "Language Tutor Volunteer",
-        //   company: "Madrid",
-        //   description: `Supported a Spanish learner in Chinese learning through weekly 2-3 hour sessions.
-        //   Developed personalized lessons focused on vocabulary, grammar, and conversation.
-        //   Successfully passed the official exam of HSK2.`,
-        // }
-      ];
+      const t = translations[currentLang];
+      const experience = t.experienceData;
+
       let html = "";
       experience.forEach(item => {
-        html += `<p>
-        <strong>${item.title} at ${item.company}</strong><br>
-        ${item.description}
-      </p>`;
-      });
-      document.querySelector(".experience-section-bg").innerHTML = html;
-    }
+        const companyDisplay = item.company;
 
-    function renderEducationSection() {
-      const education = [
-        { degree: "Management and Direction of Educational Centers", institution: "Universidad Europea" },
-        // { degree: "Web and Mobile Development BootCamp", institution: "Codenotch" },
-        // { degree: "Business English", institution: "Zhejiang International Studies University" },
-        // { degree: "Exchange Study", institution: "Deltion College" }
-      ];
-
-      let html = '';
-      education.forEach(item => {
-        html += `<p><strong>${item.degree}</strong> at ${item.institution}</p>`;
-      });
-      document.getElementById('education-section').innerHTML = html;
-    }
-
-    function renderSkillsSection() {
-      const skills = [
-        // Frontend
-        { name: "HTML", icon: "/icons/html.svg", category: "Frontend" },
-        { name: "CSS", icon: "/icons/css.svg", category: "Frontend" },
-        { name: "JavaScript", icon: "/icons/javascript.svg", category: "Frontend" },
-        { name: "TypeScript", icon: "/icons/typescript.svg", category: "Frontend" },
-        { name: "React", icon: "/icons/react.svg", category: "Frontend" },
-        { name: "Next", icon: "/icons/next.svg", category: "Frontend" },
-        { name: "MaterialUI", icon: "/icons/material.svg", category: "Frontend" },
-        { name: "Jest", icon: "/icons/jest.svg", category: "Frontend" },
-        // Backend
-        { name: "NodeJS", icon: "/icons/node.svg", category: "Backend" },
-        { name: "Express", icon: "/icons/express.svg", category: "Backend" },
-        { name: "Go", icon: "/icons/golang.svg", category: "Backend" },
-        { name: "PHP", icon: "/icons/php.svg", category: "Backend" },
-        { name: "Knex", icon: "/icons/knex.svg", category: "Backend" },
-        // Databases
-        { name: "MySQL", icon: "/icons/mysql.svg", category: "Databases" },
-        { name: "PostgreSQL", icon: "/icons/postgresql.svg", category: "Databases" },
-        { name: "MongoDB", icon: "/icons/mongodb.svg", category: "Databases" },
-        { name: "Redis", icon: "/icons/redis.svg", category: "Databases" },
-        // Others
-        { name: "Git", icon: "/icons/git.svg", category: "Others" },
-        { name: "Docker", icon: "/icons/docker.svg", category: "Others" },
-        { name: "Linux", icon: "/icons/linux.svg", category: "Others" },
-        { name: "Windows", icon: "/icons/windows.svg", category: "Others" },
-        { name: "Postman", icon: "/icons/postman.svg", category: "Others" }
-      ];
-      // Remove categories, render all skills in a single grid
-      let html = '<div class="skills-grid">';
-      skills.forEach(skill => {
         html += `
-          <div class="skill-item">
-            <img src="${skill.icon}" alt="${skill.name}" class="skill-icon">
-            <span>${skill.name}</span>
+          <div class="job">
+            <div class="job-header">
+              <div class="job-header-left">
+                <div class="company">${companyDisplay}</div>
+                <div class="job-title">${item.title}</div>
+              </div>
+              <div class="job-period">${item.period}</div>
+            </div>
+            <div class="job-description">
+              ${item.description.map(desc => `
+                <div class="job-subsection">
+                  <strong class="job-subtitle">${desc.subtitle}</strong><span class="job-text">${desc.content}</span>
+                </div>
+              `).join('')}
+              <div class="technologies">
+                <strong>Tech:</strong> ${item.technologies}
+              </div>
+            </div>
           </div>
         `;
       });
-      html += '</div>';
-      document.getElementById('skills-section').innerHTML = html;
+      document.querySelector(".experience-content").innerHTML = html;
+    }
+
+    function renderEducationSection() {
+      const t = translations[currentLang];
+      const education = t.educationData;
+
+      let html = '';
+      education.forEach(item => {
+        html += `
+          <div class="education-item">
+            <div class="education-header">
+              <div class="degree">${item.degree}</div>
+            </div>
+            <div class="institution">${item.institution}</div>
+          </div>
+        `;
+      });
+      document.querySelector(".education-content").innerHTML = html;
+    } function printPDF() {
+      window.print();
     }
 
     window.addEventListener('DOMContentLoaded', function () {
       renderExperienceSection();
       renderEducationSection();
-      renderSkillsSection();
+      updateLanguageHighlight();
     });
   </script>
 </head>
 
 <body>
-  <div class="cv-container">
-    <header>
-      <h2>GUIHUA YIN</h2>
-      <p>FULL-STACK DEVELOPER <br> yinguihua2014@gmail.com</p>
-    </header>
-    <section>
-      <h3>Profile</h3>
-      <p>A React frontend developer with over 3 years' experience based in
-        Madrid, Spain.
-        Skilled in building modern,
-        responsive web applications. Passionate about clean code, TDD, and continuous growth. Comfortable working in
-        cross-functional teams and international
-        environments.</p>
-    </section>
-    <section>
-      <h3>Education</h3>
-      <section>
-        <div class="education-section-bg">
-          <div id="education-section"></div>
+  <div class="container">
+    <div class="sidebar">
+      <div class="header">
+        <div class="profile-photo">
+          <img src="hua.jpeg" alt="Guihua Yin" class="photo">
+          <div class="photo-overlay">
+            <div class="photo-border"></div>
+          </div>
         </div>
-      </section>
-    </section>
-    <section>
-      <h3>Experience</h3>
-      <div class="experience-section-bg"></div>
-    </section>
-    <section>
-      <h3>Skills</h3>
-      <section class="skills-section-bg">
-        <div id="skills-section"></div>
-      </section>
-    </section>
+        <h1>GUIHUA YIN</h1>
+        <div class="subtitle">Full-Stack Developer</div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>🙋 Profile</h3>
+        <p class="profile-text">A passionate Full-Stack Developer with 3+ years of experience creating modern,
+          responsive web applications. Specialized in React ecosystem and backend services. Love clean code, TDD, and
+          continuous learning. Thrives in collaborative, international environments.</p>
+      </div>
+
+      <div class="sidebar-section">
+        <h3> 📧 Contact</h3>
+        <div class="contact-item">
+          📍 Madrid, Spain
+        </div>
+        <div class="contact-item">
+          <a href="mailto:yinguihua2014@gmail.com">📬 yinguihua2014@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          🔗
+          <a href="https://linkedin.com/in/guihua-yin" target="_blank">linkedin.com/in/guihua-yin</a>
+        </div>
+        <div class="contact-item">
+          🔗
+          <a href="https://github.com/evatitan" target="_blank">github.com/guihua-yin</a>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>🛠️ Technical Skills</h3>
+        <div class="skill-category">
+          <div class="skill-item">
+            <strong>Frontend Development:</strong><br>
+            <div class="skill-tags">
+              <span class="skill-tag">HTML5</span>
+              <span class="skill-tag">CSS3</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Next.js</span>
+            </div>
+          </div>
+          <div class="skill-item">
+            <strong>Backend Development:</strong><br>
+            <div class="skill-tags">
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Golang</span>
+              <span class="skill-tag">RESTful API</span>
+            </div>
+          </div>
+          <div class="skill-item">
+            <strong>Database Systems:</strong><br>
+            <div class="skill-tags">
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">Knex</span>
+            </div>
+          </div>
+          <div class="skill-item">
+            <strong>Cloud & DevOps:</strong><br>
+            <div class="skill-tags">
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">CI/CD</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Nginx</span>
+            </div>
+          </div>
+          <div class="skill-item">
+            <strong>Testing & Quality:</strong><br>
+            <div class="skill-tags">
+              <span class="skill-tag">Jest</span>
+              <span class="skill-tag">React Testing Library</span>
+              <span class="skill-tag">Supertest</span>
+              <span class="skill-tag">Unit Testing</span>
+            </div>
+          </div>
+          <div class="skill-item">
+            <strong>Development Tools:</strong><br>
+            <div class="skill-tags">
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">GitHub</span>
+              <span class="skill-tag">GitLab</span>
+              <span class="skill-tag">VS Code</span>
+              <span class="skill-tag">Postman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>🌍 Languages</h3>
+        <div class="language-item clickable-lang" data-lang="zh" onclick="changeLanguage('zh')">
+          <div class="language-header">
+            <strong>🇨🇳 Chinese</strong>
+            <span class="language-level">Native</span>
+          </div>
+          <div class="language-bar">
+            <div class="language-progress" style="width: 100%"></div>
+          </div>
+        </div>
+        <div class="language-item clickable-lang" data-lang="en" onclick="changeLanguage('en')">
+          <div class="language-header">
+            <strong>🇺🇸 English</strong>
+            <span class="language-level">Professional</span>
+          </div>
+          <div class="language-bar">
+            <div class="language-progress" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="language-item clickable-lang" data-lang="es" onclick="changeLanguage('es')">
+          <div class="language-header">
+            <strong>🇪🇸 Spanish</strong>
+            <span class="language-level">Professional</span>
+          </div>
+          <div class="language-bar">
+            <div class="language-progress" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="top-controls">
+        <div class="download-btn-container">
+          <button class="download-btn pdf-btn" onclick="printPDF()">
+            📋 PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="main-section">
+        <h2>👩‍💻 Professional Experience</h2>
+        <div class="experience-content"></div>
+      </div>
+
+      <div class="main-section">
+        <h2>🎓 Education</h2>
+        <div class="education-content"></div>
+      </div>
+    </div>
   </div>
 </body>
 
