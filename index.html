@@ -229,14 +229,14 @@
 
     .job-description {
       font-size: 11px;
-      line-height: 1.5;
+      line-height: 1.25;
       text-align: left;
       color: #4a5568;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .job-subsection {
-      margin-bottom: 10px;
+      margin-bottom: 4px;
     }
 
     .job-subtitle {
@@ -250,7 +250,7 @@
 
     .job-text {
       font-size: 10px;
-      line-height: 1.4;
+      line-height: 1.25;
       color: #4a5568;
       margin: 0;
       text-align: justify;
@@ -278,23 +278,51 @@
       background: #f7fafc;
       border-radius: 8px;
       padding: 12px;
-      border-left: 4px solid #764ba2;
+      border-left: 4px solid #667eea;
     }
 
     .education-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       margin-bottom: 4px;
     }
 
-    .education-item .degree {
-      font-weight: 600;
-      color: #764ba2;
-      font-size: 13px;
-      line-height: 1.3;
+    .education-header-left {
+      flex: 1;
     }
 
     .education-item .institution {
-      font-size: 11px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #2d3748;
+    }
+
+    .education-item .field {
+      font-weight: 600;
+      color: #667eea;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .education-item .degree {
+      font-weight: 500;
       color: #718096;
+      font-size: 11px;
+      line-height: 1.3;
+      margin-top: 1px;
+    }
+
+    .education-period {
+      font-size: 12px;
+      color: #718096;
+      font-style: italic;
+      text-align: right;
+      white-space: nowrap;
+      background: #e2e8f0;
+      padding: 4px 8px;
+      border-radius: 6px;
       font-weight: 500;
     }
 
@@ -493,25 +521,20 @@
     @media print {
       @page {
         size: A4;
-        margin: 15mm 5mm 5mm 5mm;
-        /* 隐藏页眉页脚 */
-        margin-top: 15mm;
-        margin-bottom: 5mm;
+        margin: 0;
       }
 
       /* 隐藏浏览器默认的页眉页脚信息 */
       @page :first {
-        margin-top: 15mm;
+        margin: 0;
       }
 
       @page :left {
-        margin-left: 5mm;
-        margin-right: 5mm;
+        margin: 0;
       }
 
       @page :right {
-        margin-left: 5mm;
-        margin-right: 5mm;
+        margin: 0;
       }
 
       /* Hide all animations and dynamic elements in print */
@@ -528,10 +551,6 @@
       }
 
       .container::before {
-        display: none !important;
-      }
-
-      .sidebar::before {
         display: none !important;
       }
 
@@ -554,17 +573,18 @@
       }
 
       .container {
-        max-width: 190mm !important;
-        margin: 20mm auto 0 auto !important;
+        max-width: 210mm !important;
+        margin: 0 auto !important;
         padding: 0 !important;
         box-shadow: none !important;
         border-radius: 0 !important;
-        min-height: 250mm !important;
+        min-height: 297mm !important;
         grid-template-columns: 60mm 1fr !important;
         gap: 0 !important;
-        height: 250mm !important;
+        height: 297mm !important;
         page-break-inside: avoid;
         display: grid !important;
+        position: relative !important;
       }
 
       .sidebar-content {
@@ -588,20 +608,37 @@
       }
 
       .sidebar {
-        padding: 18px 12px !important;
+        padding: 0 12px !important;
         font-size: 8px !important;
         background: #1a202c !important;
         color: white !important;
-        height: 250mm !important;
-        min-height: 250mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: space-between !important;
+        justify-content: flex-start !important;
+        margin: 0 !important;
+        position: relative !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 12px !important;
+        width: 60mm !important;
+      }
+
+      .sidebar::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -10mm !important;
+        width: 10mm !important;
+        height: 100% !important;
+        background: #1a202c !important;
+        z-index: -1 !important;
       }
 
       .header {
-        padding: 10px 0 !important;
-        margin-bottom: 15px !important;
+        padding: 5px 0 !important;
+        margin-bottom: 10px !important;
       }
 
       .profile-photo {
@@ -624,8 +661,8 @@
       }
 
       .sidebar-section {
-        margin-bottom: 15px !important;
-        padding: 4px 0 !important;
+        margin-bottom: 10px !important;
+        padding: 2px 0 !important;
       }
 
       .sidebar-section h3 {
@@ -735,15 +772,15 @@
       }
 
       .main-content {
-        padding: 18px 20px !important;
+        padding: 10px 20px !important;
         font-size: 8px !important;
-        height: 250mm !important;
+        height: 297mm !important;
         overflow: visible !important;
         background: white !important;
-        min-height: 250mm !important;
+        min-height: 297mm !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: space-evenly !important;
+        justify-content: flex-start !important;
       }
 
       .top-controls {
@@ -751,8 +788,8 @@
       }
 
       .main-section {
-        margin-bottom: 20px !important;
-        flex: 1 !important;
+        margin-bottom: 8px !important;
+        flex: none !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: flex-start !important;
@@ -760,13 +797,13 @@
 
       .main-section:last-child {
         margin-bottom: 0 !important;
-        flex: 0.5 !important;
+        flex: none !important;
       }
 
       .main-section h2 {
         font-size: 14px !important;
-        margin-bottom: 8px !important;
-        padding-bottom: 3px !important;
+        margin-bottom: 4px !important;
+        padding-bottom: 2px !important;
         border-bottom: 2px solid #667eea !important;
         color: #2d3748 !important;
         font-weight: 600 !important;
@@ -785,8 +822,8 @@
       }
 
       .job {
-        margin-bottom: 10px !important;
-        padding: 10px !important;
+        margin-bottom: 6px !important;
+        padding: 6px !important;
         background: #f7fafc !important;
         box-shadow: none !important;
         border: none !important;
@@ -847,7 +884,7 @@
       }
 
       .job-subsection {
-        margin-bottom: 6px !important;
+        margin-bottom: 4px !important;
       }
 
       .job-subtitle {
@@ -869,8 +906,8 @@
       }
 
       .technologies {
-        margin-top: 8px !important;
-        padding: 5px 8px !important;
+        margin-top: 6px !important;
+        padding: 4px 6px !important;
         background: #667eea !important;
         border-radius: 5px !important;
         font-size: 8px !important;
@@ -885,31 +922,61 @@
       }
 
       .education-item {
-        margin-bottom: 12px !important;
-        padding: 10px !important;
+        margin-bottom: 6px !important;
+        padding: 6px !important;
         background: #f7fafc !important;
         border: none !important;
-        border-left: 3px solid #764ba2 !important;
+        border-left: 3px solid #667eea !important;
         border-radius: 6px !important;
         page-break-inside: avoid;
       }
 
       .education-header {
         margin-bottom: 2px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        flex-direction: row !important;
       }
 
-      .degree {
-        font-size: 10px !important;
-        font-weight: 600 !important;
-        color: #764ba2 !important;
-        line-height: 1.3 !important;
+      .education-header-left {
+        flex: 1 !important;
+        display: block !important;
       }
 
       .institution {
-        font-size: 9px !important;
-        color: #718096 !important;
-        line-height: 1.2 !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        color: #2d3748 !important;
+        margin-bottom: 1px !important;
+      }
+
+      .field {
+        font-size: 10px !important;
+        color: #667eea !important;
+        margin-bottom: 0 !important;
+        font-weight: 600 !important;
+      }
+
+      .degree {
+        font-size: 8px !important;
         font-weight: 500 !important;
+        color: #718096 !important;
+        line-height: 1.3 !important;
+        margin-top: 1px !important;
+      }
+
+      .education-period {
+        font-size: 8px !important;
+        color: #718096 !important;
+        background: #e2e8f0 !important;
+        padding: 2px 4px !important;
+        border-radius: 3px !important;
+        white-space: nowrap !important;
+        align-self: flex-start !important;
+        font-weight: 500 !important;
+        margin-left: 8px !important;
+        flex-shrink: 0 !important;
       }
 
       * {
@@ -946,29 +1013,45 @@
         location: "Location",
         experienceData: [
           {
-            title: "Frontend Developer",
-            company: "SICE & Between",
-            period: "2022 - 2024",
+            title: "Personal Goal Pursuit",
+            company: "Self-Development Phase",
+            period: "Jan 2025 - Present",
             description: [
               {
-                subtitle: "Full-Stack Development & Architecture:",
-                content: "Developed comprehensive full-stack web applications using React, Node.js, and Python, with a focus on creating responsive user interfaces and building scalable backend services that could handle high traffic loads."
-              },
-              {
-                subtitle: "Database Optimization & Performance:",
-                content: "Worked extensively with MySQL, PostgreSQL, and Redis to optimize data storage solutions and enhance real-time performance, implementing efficient queries and caching strategies."
-              },
-              {
-                subtitle: "Quality Assurance & DevOps:",
-                content: "Ensured system reliability through comprehensive unit and integration testing. Deployed services using Docker across Linux and Windows environments to support CI/CD pipelines and scalable infrastructure."
+                subtitle: "Focus: ",
+                content: "Professional Development & Continuous Learning"
               }
             ],
-            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Linux, Windows, CI/CD"
+            technologies: "Professional Development, Continuous Learning"
           },
           {
-            title: "Frontend Developer",
+            title: "Web Developer",
+            company: "SICE & Between",
+            period: "Oct 2022 - Dec 2024",
+            description: [
+              {
+                subtitle: "Full-Stack Development:",
+                content: "Developed and deployed full-stack web applications with React, Node, and Golang, delivering responsive UIs and scalable backend services."
+              },
+              {
+                subtitle: "Database Optimization:",
+                content: "Optimized MySQL, PostgreSQL, and Redis for high-performance and real-time features through efficient queries and caching."
+              },
+              {
+                subtitle: "DevOps & Deployment:",
+                content: "Built and deployed Docker-based frontend and backend services with Caddy on self-managed servers, collaborating in GitLab CI/CD workflows for smooth delivery."
+              },
+              {
+                subtitle: "Quality Assurance:",
+                content: "Improved system reliability via unit and integration testing across Linux and Windows environments."
+              }
+            ],
+            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Caddy, GitLab CI/CD, Linux, Windows"
+          },
+          {
+            title: "Web Developer",
             company: "720casa",
-            period: "2021 - 2022",
+            period: "Jan 2021 - Oct 2022",
             description: [
               {
                 subtitle: "Frontend Development & UX Enhancement:",
@@ -986,34 +1069,44 @@
             technologies: "JavaScript, Node.js, React.js, MySQL, knex.js, Docker, Linux"
           },
           {
-            title: "Language Teacher",
-            company: "Mitoyo",
-            period: "2020 - 2021",
+            title: "Deputy Manager & International Tour Leader",
+            company: "Zhejiang CYTS International Travel Co., Ltd.",
+            period: "2015 - 2019",
             description: [
               {
-                subtitle: "Online & In-Person Teaching:",
-                content: "Taught Chinese to Spanish-speaking students through both online platforms and face-to-face sessions, adapting teaching methods to suit different learning styles and student needs."
+                subtitle: "Deputy Manager, Outbound Tour Leaders (2018-2019):",
+                content: "Lead the outbound tourism team, collaborating with other departments and driving operational efficiency. Handle employee recruitment, conduct pre-job training, and manage unexpected challenges."
               },
               {
-                subtitle: "Content Creation & Curriculum Design:",
-                content: "Prepared interactive educational content and customized lesson plans to meet individual student requirements, ensuring engaging and effective learning experiences."
+                subtitle: "International Tour Leader (2015-2018):",
+                content: "Served as International Tour Leader, guiding outbound tours and customizing travel itineraries for client companies, ensuring smooth travel and excellent customer experience."
               },
               {
-                subtitle: "Community Building & Language Exchange:",
-                content: "Provided detailed feedback on student exercises and organized language exchange events to enhance learning outcomes and improve conversation skills through practical application."
+                subtitle: "Core Competencies:",
+                content: "Skilled in team leadership, office administration, cross-cultural coordination, and customer service delivery throughout the tourism industry experience."
               }
             ],
-            technologies: "Online Teaching, Content Creation, Language Exchange"
+            technologies: "Team Leadership, Operations Management, Tour Leadership, Customer Service, Cross-cultural Coordination"
           }
         ],
         educationData: [
           {
-            degree: "Management and Direction of Educational Centers",
-            institution: "Universidad Europea"
+            degree: "Master's Degree",
+            field: "Management and Direction of Educational Centers",
+            institution: "Universidad Europea",
+            period: "2020 - 2021"
           },
           {
-            degree: "Business English",
-            institution: "Zhejiang International Studies University"
+            degree: "Bachelor's Degree",
+            field: "Business English",
+            institution: "Zhejiang International Studies University",
+            period: "2016 - 2019"
+          },
+          {
+            degree: "Associate's Degree",
+            field: "International Tourism",
+            institution: "Tourism College of Zhejiang",
+            period: "2012 - 2015"
           }
         ]
       },
@@ -1043,29 +1136,45 @@
         location: "地址",
         experienceData: [
           {
-            title: "前端开发工程师",
-            company: "SICE & Between",
-            period: "2022 - 2024",
+            title: "个人发展阶段",
+            company: "积极寻求新机会",
+            period: "2025年1月 - 至今",
             description: [
               {
-                subtitle: "全栈开发与架构设计：",
-                content: "使用React、Node.js和Python开发综合性全栈Web应用，专注于创建响应式用户界面和构建可处理高流量负载的可扩展后端服务。"
-              },
-              {
-                subtitle: "数据库优化与性能提升：",
-                content: "深度使用MySQL、PostgreSQL和Redis优化数据存储解决方案并提升实时性能，实施高效查询和缓存策略。"
-              },
-              {
-                subtitle: "质量保证与DevOps：",
-                content: "通过全面的单元测试和集成测试确保系统可靠性。在Linux和Windows环境中使用Docker部署服务，支持CI/CD流水线和可扩展基础设施。"
+                subtitle: "专注：",
+                content: "职业发展与持续学习"
               }
             ],
-            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Linux, Windows, CI/CD"
+            technologies: "职业发展, 持续学习"
           },
           {
-            title: "前端开发工程师",
+            title: "Web开发工程师",
+            company: "SICE & Between",
+            period: "2022年10月 - 2024年12月",
+            description: [
+              {
+                subtitle: "全栈开发：",
+                content: "使用React、Node和Golang开发并部署全栈Web应用，提供响应式UI和可扩展的后端服务。"
+              },
+              {
+                subtitle: "数据库优化：",
+                content: "通过高效查询和缓存优化MySQL、PostgreSQL和Redis，实现高性能和实时功能。"
+              },
+              {
+                subtitle: "DevOps与部署：",
+                content: "在自管理服务器上使用Caddy构建并部署基于Docker的前端和后端服务，在GitLab CI/CD工作流中协作实现平滑交付。"
+              },
+              {
+                subtitle: "质量保证：",
+                content: "通过在Linux和Windows环境中进行单元测试和集成测试提高系统可靠性。"
+              }
+            ],
+            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Caddy, GitLab CI/CD, Linux, Windows"
+          },
+          {
+            title: "Web开发工程师",
             company: "720casa",
-            period: "2021 - 2022",
+            period: "2021年1月 - 2022年10月",
             description: [
               {
                 subtitle: "前端开发与用户体验优化：",
@@ -1083,43 +1192,53 @@
             technologies: "JavaScript, Node.js, React.js, MySQL, knex.js, Docker, Linux"
           },
           {
-            title: "语言教师",
-            company: "Mitoyo",
-            period: "2020 - 2021",
+            title: "出境旅游领队部副经理 & 国际旅游领队",
+            company: "浙江中青旅国际旅行社有限公司",
+            period: "2015年 - 2019年",
             description: [
               {
-                subtitle: "线上线下教学：",
-                content: "通过在线平台和面对面课程为西班牙语学生教授中文，调整教学方法以适应不同的学习风格和学生需求。"
+                subtitle: "出境旅游领队部副经理 (2018-2019年)：",
+                content: "领导出境旅游团队，与其他部门协作并推动运营效率。负责员工招聘、岗前培训和处理突发挑战。"
               },
               {
-                subtitle: "内容创作与课程设计：",
-                content: "准备互动教育内容并定制课程计划以满足个别学生需求，确保引人入胜且有效的学习体验。"
+                subtitle: "国际旅游领队 (2015-2018年)：",
+                content: "担任国际旅游领队，指导出境旅游并为客户公司定制旅行行程，确保顺畅旅行和优质客户体验。"
               },
               {
-                subtitle: "社区建设与语言交流：",
-                content: "为学生练习提供详细反馈并组织语言交流活动，通过实际应用提升学习成果和改善会话技能。"
+                subtitle: "核心能力：",
+                content: "精通团队领导、办公室管理、跨文化协调和客户服务，在整个旅游行业经验中表现出色。"
               }
             ],
-            technologies: "在线教学, 内容创作, 语言交流, 课程设计"
+            technologies: "团队领导, 运营管理, 旅游领队, 客户服务, 跨文化协调"
           }
         ],
         educationData: [
           {
-            degree: "教育中心管理与指导硕士",
-            institution: "欧洲大学"
+            degree: "硕士学位",
+            field: "教育中心管理与指导",
+            institution: "欧洲大学",
+            period: "2020年 - 2021年"
           },
           {
-            degree: "商务英语学士",
-            institution: "浙江国际研究大学"
+            degree: "学士学位",
+            field: "商务英语",
+            institution: "浙江国际研究大学",
+            period: "2016年 - 2019年"
+          },
+          {
+            degree: "专科学位",
+            field: "国际旅游",
+            institution: "浙江旅游职业学院",
+            period: "2012年 - 2015年"
           }
         ]
       },
       es: {
         name: "GUIHUA YIN",
-        title: "Desarrollador Full-Stack",
+        title: "Desarrolladora Full-Stack",
         contact: "📧 Contacto",
         profile: "🙋 Perfil",
-        profileText: "Desarrolladora Full-Stack apasionado con más de 3 años de experiencia creando aplicaciones web modernas y responsivas. Especializado en el ecosistema React y servicios backend. Amo el código limpio, TDD y el aprendizaje continuo. Prospero en entornos colaborativos e internacionales.",
+        profileText: "Desarrolladora Full-Stack apasionada con más de 3 años de experiencia creando aplicaciones web modernas y responsivas. Especializada en el ecosistema React y servicios backend. Ama el código limpio, TDD y el aprendizaje continuo. Prospera en entornos colaborativos e internacionales.",
         skills: "🛠️ Habilidades Técnicas",
         languages: "🌍 Idiomas",
         experience: "👩‍💻 Experiencia Profesional",
@@ -1140,74 +1259,100 @@
         location: "Ubicación",
         experienceData: [
           {
-            title: "Desarrollador Frontend",
-            company: "SICE & Between",
-            period: "2022 - 2024",
+            title: "Desarrollo Personal",
+            company: "Buscando Nuevas Oportunidades",
+            period: "Ene 2025 - Presente",
             description: [
               {
-                subtitle: "Desarrollo Full-Stack y Arquitectura:",
-                content: "Desarrollé aplicaciones web full-stack integrales usando React, Node.js y Python, con enfoque en crear interfaces de usuario responsivas y construir servicios backend escalables que pudieran manejar cargas de tráfico altas."
-              },
-              {
-                subtitle: "Optimización de Base de Datos y Rendimiento:",
-                content: "Trabajé extensivamente con MySQL, PostgreSQL y Redis para optimizar soluciones de almacenamiento de datos y mejorar el rendimiento en tiempo real, implementando consultas eficientes y estrategias de caché."
-              },
-              {
-                subtitle: "Aseguramiento de Calidad y DevOps:",
-                content: "Aseguré la confiabilidad del sistema a través de pruebas unitarias e integración integrales. Desplegué servicios usando Docker en entornos Linux y Windows para soportar pipelines CI/CD e infraestructura escalable."
+                subtitle: "Enfoque:",
+                content: "Desarrollo Profesional y Aprendizaje Continuo"
               }
             ],
-            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Linux, Windows, CI/CD"
+            technologies: "Desarrollo Profesional, Aprendizaje Continuo"
           },
           {
-            title: "Desarrollador Frontend",
+            title: "Desarrolladora Web",
+            company: "SICE & Between",
+            period: "Oct 2022 - Dic 2024",
+            description: [
+              {
+                subtitle: "Desarrollo Full-Stack:",
+                content: "Desarrollo y despliego aplicaciones web full-stack con React, Node y Golang, entregando UIs responsivas y servicios backend escalables."
+              },
+              {
+                subtitle: "Optimización de Bases de Datos:",
+                content: "Optimizo MySQL, PostgreSQL y Redis para funcionalidades de alto rendimiento y tiempo real mediante consultas eficientes y caché."
+              },
+              {
+                subtitle: "DevOps y Despliegue:",
+                content: "Construyo y despliego servicios frontend y backend basados en Docker con Caddy en servidores auto-gestionados, colaborando en flujos de trabajo GitLab CI/CD para entrega fluida."
+              },
+              {
+                subtitle: "Aseguramiento de Calidad:",
+                content: "Mejoro la confiabilidad del sistema mediante pruebas unitarias e integración en entornos Linux y Windows."
+              }
+            ],
+            technologies: "React, Node.js, Golang, MySQL, PostgreSQL, Redis, Knex.js, Docker, Caddy, GitLab CI/CD, Linux, Windows"
+          },
+          {
+            title: "Desarrolladora Web",
             company: "720casa",
-            period: "2021 - 2022",
+            period: "Ene 2021 - Oct 2022",
             description: [
               {
                 subtitle: "Desarrollo Frontend y Mejora UX:",
-                content: "Construí y mantuve aplicaciones web robustas usando JavaScript y React.js, contribuyendo a proyectos frontend y full-stack que involucran bases de datos MySQL basados en requisitos de hoja de ruta del producto y especificaciones de diseño."
+                content: "Construyo y mantengo aplicaciones web robustas usando JavaScript y React.js, contribuyendo a proyectos frontend y full-stack que involucran bases de datos MySQL basados en requisitos de hoja de ruta del producto y especificaciones de diseño."
               },
               {
                 subtitle: "Optimización de Rendimiento:",
-                content: "Mejoré la experiencia del usuario optimizando interfaces de usuario complejas, mejorando tiempos de carga e implementando patrones de diseño responsivo que funcionaban perfectamente en diferentes dispositivos y navegadores."
+                content: "Mejoro la experiencia del usuario optimizando interfaces de usuario complejas, mejorando tiempos de carga e implementando patrones de diseño responsivo que funcionan perfectamente en diferentes dispositivos y navegadores."
               },
               {
                 subtitle: "Gestión de Dependencias e Internacionalización:",
-                content: "Gestioné dependencias frontend y backend para asegurar compatibilidad, seguridad y rendimiento óptimo. Creé y mantuve archivos de localización y traducciones para soportar interfaces multiidioma."
+                content: "Gestiono dependencias frontend y backend para asegurar compatibilidad, seguridad y rendimiento óptimo. Creo y mantengo archivos de localización y traducciones para soportar interfaces multiidioma."
               }
             ],
             technologies: "JavaScript, Node.js, React.js, MySQL, knex.js, Docker, Linux"
           },
           {
-            title: "Profesor de Idiomas",
-            company: "Mitoyo",
-            period: "2020 - 2021",
+            title: "Subgerenta & Líder de Tours Internacionales",
+            company: "Zhejiang CYTS International Travel Co., Ltd.",
+            period: "2015 - 2019",
             description: [
               {
-                subtitle: "Enseñanza Online y Presencial:",
-                content: "Enseñé chino a estudiantes hispanohablantes a través de plataformas online y sesiones presenciales, adaptando métodos de enseñanza para adaptarse a diferentes estilos de aprendizaje y necesidades estudiantiles."
+                subtitle: "Subgerenta, Líderes de Tours Internacionales (2018-2019):",
+                content: "Lideré el equipo de turismo internacional, colaborando con otros departamentos e impulsando la eficiencia operacional. Gestioné la contratación de empleados, realicé capacitaciones previas al trabajo y manejé desafíos inesperados."
               },
               {
-                subtitle: "Creación de Contenido y Diseño Curricular:",
-                content: "Preparé contenido educativo interactivo y planes de lección personalizados para satisfacer requisitos estudiantiles individuales, asegurando experiencias de aprendizaje atractivas y efectivas."
+                subtitle: "Líder de Tours Internacionales (2015-2018):",
+                content: "Serví como Líder de Tours Internacionales, guiando tours al extranjero y personalizando itinerarios de viaje para empresas clientes, asegurando viajes fluidos y excelente experiencia del cliente."
               },
               {
-                subtitle: "Construcción de Comunidad e Intercambio de Idiomas:",
-                content: "Proporcioné retroalimentación detallada sobre ejercicios estudiantiles y organicé eventos de intercambio de idiomas para mejorar resultados de aprendizaje y habilidades de conversación a través de aplicación práctica."
+                subtitle: "Competencias Principales:",
+                content: "Experta en liderazgo de equipos, administración de oficinas, coordinación intercultural y entrega de servicio al cliente a lo largo de la experiencia en la industria turística."
               }
             ],
-            technologies: "Enseñanza Online, Creación de Contenido, Intercambio de Idiomas"
+            technologies: "Liderazgo de Equipos, Gestión de Operaciones, Liderazgo de Tours, Servicio al Cliente, Coordinación Intercultural"
           }
         ],
         educationData: [
           {
-            degree: "Máster en Gestión y Dirección de Centros Educativos",
-            institution: "Universidad Europea"
+            degree: "Máster",
+            field: "Gestión y Dirección de Centros Educativos",
+            institution: "Universidad Europea",
+            period: "2020 - 2021"
           },
           {
-            degree: "Inglés de Negocios",
-            institution: "Universidad de Estudios Internacionales de Zhejiang"
+            degree: "Licenciatura",
+            field: "Inglés de Negocios",
+            institution: "Universidad de Estudios Internacionales de Zhejiang",
+            period: "2016 - 2019"
+          },
+          {
+            degree: "Grado Asociado",
+            field: "Turismo Internacional",
+            institution: "Colegio de Turismo de Zhejiang",
+            period: "2012 - 2015"
           }
         ]
       }
@@ -1317,9 +1462,13 @@
         html += `
           <div class="education-item">
             <div class="education-header">
-              <div class="degree">${item.degree}</div>
+              <div class="education-header-left">
+                <div class="institution">${item.institution}</div>
+                <div class="field">${item.field}</div>
+                <div class="degree">${item.degree}</div>
+              </div>
+              ${item.period ? `<div class="education-period">${item.period}</div>` : ''}
             </div>
-            <div class="institution">${item.institution}</div>
           </div>
         `;
       });
